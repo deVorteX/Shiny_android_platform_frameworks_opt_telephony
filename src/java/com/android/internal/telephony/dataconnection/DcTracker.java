@@ -2030,6 +2030,7 @@ public final class DcTracker extends DcTrackerBase {
      *          error when waitingApns.isEmpty()
      */
     private ArrayList<ApnSetting> buildWaitingApns(String requestedApnType, int radioTech) {
+	if (SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) createAllApnList();
         if (DBG) log("buildWaitingApns: E requestedApnType=" + requestedApnType);
         ArrayList<ApnSetting> apnList = new ArrayList<ApnSetting>();
 
