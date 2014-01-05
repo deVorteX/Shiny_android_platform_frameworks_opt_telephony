@@ -2097,9 +2097,14 @@ public final class DcTracker extends DcTrackerBase {
                         if (DBG) log("buildWaitingApns: adding apn=" + apn.toString());
                         apnList.add(apn);
                     } else {
-                        if (DBG) {
-                            log("buildWaitingApns: bearer:" + apn.bearer + " != "
-                                    + "radioTech:" + radioTech);
+                        if (radioTech == 8 && apn.bearer == 14 && SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) {
+                            if (DBG) log("buildWaitingApns(DeVorteX): adding apn=" + apn.toString());
+                            apnList.add(apn);
+                        } else {
+                            if (DBG) {
+                                log("buildWaitingApns: bearer:" + apn.bearer + " != "
+                                    	+ "radioTech:" + radioTech);
+                            }
                         }
                     }
                 } else {
