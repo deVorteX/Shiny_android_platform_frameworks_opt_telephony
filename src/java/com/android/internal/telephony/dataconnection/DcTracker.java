@@ -1141,11 +1141,9 @@ public final class DcTracker extends DcTrackerBase {
         // for dormant and active connections.
         boolean isAnyDataCallDormant = false;
         boolean isAnyDataCallActive = false;
-        if (SystemProperties.getInt("ro.telephony.toroRIL", 0) != 1) {
-            for (DataCallResponse newState : dataCallStates) {
-                if (newState.active == DATA_CONNECTION_ACTIVE_PH_LINK_UP) isAnyDataCallActive = true;
-                if (newState.active == DATA_CONNECTION_ACTIVE_PH_LINK_DOWN) isAnyDataCallDormant = true;
-            }
+        for (DataCallResponse newState : dataCallStates) {
+            if (newState.active == DATA_CONNECTION_ACTIVE_PH_LINK_UP) isAnyDataCallActive = true;
+            if (newState.active == DATA_CONNECTION_ACTIVE_PH_LINK_DOWN) isAnyDataCallDormant = true;
         }
 
         if (isAnyDataCallDormant && !isAnyDataCallActive) {
