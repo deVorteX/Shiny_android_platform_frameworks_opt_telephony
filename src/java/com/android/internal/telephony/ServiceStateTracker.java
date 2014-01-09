@@ -271,13 +271,10 @@ public abstract class ServiceStateTracker extends Handler {
     }
 
     protected void updatePhoneObject() {
-	int voiceRadioTech;
-	if (SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1 && mSS.getRilVoiceRadioTechnology() == ServiceState.RIL_RADIO_TECHNOLOGY_1xRTT) {
-            voiceRadioTech = ServiceState.RIL_RADIO_TECHNOLOGY_EVDO_A;
-        } else {
-            voiceRadioTech = mSS.getRilVoiceRadioTechnology();
+	if (SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) {
+            mSS.setRilVoiceRadioTechnology(ServiceState.RIL_RADIO_TECHNOLOGY_EVDO_A);
         }
-        mPhoneBase.updatePhoneObject(voiceRadioTech);
+        mPhoneBase.updatePhoneObject(mSS.getRilVoiceRadioTechnology());
     }
 
     /**
