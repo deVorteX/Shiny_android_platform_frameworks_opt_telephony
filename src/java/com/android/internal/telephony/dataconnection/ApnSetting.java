@@ -189,8 +189,6 @@ public class ApnSetting {
                     (t.equalsIgnoreCase(PhoneConstants.APN_TYPE_DEFAULT) &&
                     type.equalsIgnoreCase(PhoneConstants.APN_TYPE_HIPRI))) {
                 return true;
-            } else if (type.equalsIgnoreCase(PhoneConstants.APN_TYPE_IMS) && SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) {
-                return true;
             }
         }
         return false;
