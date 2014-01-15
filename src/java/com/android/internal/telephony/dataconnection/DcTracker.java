@@ -631,6 +631,7 @@ public final class DcTracker extends DcTrackerBase {
         }
 
         boolean desiredPowerState = mPhone.getServiceStateTracker().getDesiredPowerState();
+        int radioTech = mPhone.getServiceState().getRilDataRadioTechnology();
 
         if (apnContext.isConnectable() &&
                 isDataAllowed(apnContext) && getAnyDataEnabled() && !isEmergency()) {
@@ -638,7 +639,7 @@ public final class DcTracker extends DcTrackerBase {
                 if (DBG) log("trySetupData: make a FAILED ApnContext IDLE so its reusable");
                 apnContext.setState(DctConstants.State.IDLE);
             }
-            int radioTech = mPhone.getServiceState().getRilDataRadioTechnology();
+            
             if (apnContext.getState() == DctConstants.State.IDLE) {
 
                 ArrayList<ApnSetting> waitingApns = buildWaitingApns(apnContext.getApnType(),
@@ -2097,15 +2098,15 @@ public final class DcTracker extends DcTrackerBase {
                         if (DBG) log("buildWaitingApns: adding apn=" + apn.toString());
                         apnList.add(apn);
                     } else {
-                        if (radioTech == 8 && apn.bearer == 14 && SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) {
+                        /*if (radioTech == 8 && apn.bearer == 14 && SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) {
                             if (DBG) log("buildWaitingApns(DeVorteX): adding apn=" + apn.toString());
                             apnList.add(apn);
-                        } else {
+                        } else {*/
                             if (DBG) {
                                 log("buildWaitingApns: bearer:" + apn.bearer + " != "
                                     	+ "radioTech:" + radioTech);
                             }
-                        }
+                        /*}*/
                     }
                 } else {
                 if (DBG) {
