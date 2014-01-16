@@ -1212,15 +1212,6 @@ public final class DcTracker extends DcTrackerBase {
                 if (rilRadioTech == singleDcRats[i]) onlySingleDcAllowed = true;
             }
         }
-        // TODO If this works, it needs cleaned up for "production" build.
-        // Right now, it doesn't even check for debugging because we want to be
-        // absolutely sure that everything is logged.
-        if (SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1)
-        {
-            log("TEST MODE: toro RIL detected. isOnlySingleDcAllowed would normally return " + onlySingleDcAllowed +
-                    ", but we are returning false no matter what.");
-            onlySingleDcAllowed = false;
-        }
 
         if (DBG) log("isOnlySingleDcAllowed(" + rilRadioTech + "): " + onlySingleDcAllowed);
         return onlySingleDcAllowed;
