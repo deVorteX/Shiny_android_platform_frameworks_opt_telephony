@@ -271,7 +271,7 @@ public abstract class ServiceStateTracker extends Handler {
     }
 
     protected void updatePhoneObject() {
-        if (SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) {
+	if (SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1) {
             mSS.setRilVoiceRadioTechnology(ServiceState.RIL_RADIO_TECHNOLOGY_EVDO_A);
         }
         mPhoneBase.updatePhoneObject(mSS.getRilVoiceRadioTechnology());
