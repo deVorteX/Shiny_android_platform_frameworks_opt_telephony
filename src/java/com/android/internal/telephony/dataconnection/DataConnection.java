@@ -926,12 +926,6 @@ public final class DataConnection extends StateMachine {
                                 + " drs=" + mDataRegState
                                 + " mRilRat=" + mRilRat);
                     }
-                    if (SystemProperties.getInt("ro.telephony.toroRIL", 0) == 1 && mRilRat == ServiceState.RIL_RADIO_TECHNOLOGY_LTE) {
-                        if (DBG) {
-                            log("DcDefaultState: EVENT_DATA_CONNECTION_DRS_OR_RAT_CHANGED, cleaning up connections for toro");
-                        }
-                        mDct.cleanUpAllConnections("TORO RAT Changed");
-                    }
                     break;
 
                 default:
